@@ -1,0 +1,24 @@
+{% extends 'music/base.html' %}
+
+
+{% block body %}
+
+
+    <h1>Here are all my songs:</h1>
+        <ul>
+            {% for song in song_list %}
+                <li>
+                    Title: {{song.song_title}} – Album: {{song.album}}
+                    <form action="{% url 'music:delete-song' song.id %}", method="post", style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="song_id" value="{{ song.id }}" />
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+
+{% endblock %}

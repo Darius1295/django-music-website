@@ -1,0 +1,2 @@
+Django==2.0.2
+sorl-thumbnail==12.5.0

@@ -1,0 +1,22 @@
+{% extends 'music/base_visitor.html' %}
+
+{% block body %}
+
+<br>
+<h2>Register:</h2>
+<br>
+
+<form class="form-horizontal", action="", method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'music/form-template.html' %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success" >Submit</button>
+        </div>
+    </div>
+</form>
+
+<br>
+<p>Already have an account? <a href="#">Click here</a> to log in.</p>
+
+{% endblock %}
