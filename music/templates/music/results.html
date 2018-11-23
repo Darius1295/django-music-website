@@ -1,0 +1,40 @@
+{% extends 'music/base.html' %}
+
+
+{% block body %}
+
+    <h1>Results:</h1>
+    <h2>Albums:</h2>
+        <ul>
+            {% for album in albums %}
+                <li>
+                    <a href="{% url 'music:detail' album.id %}">{{ album.album_name }} – {{ album.artist }}</a>
+                    <form action="{% url 'music:delete-album' album.id %}", method="post", style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="album_id" value="{{ album.id }}" />
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    <h2>Songs:</h2>
+        <ul>
+            {% for song in song_list %}
+                <li>
+                    <a href="{% url 'music:detail' song.album.id %}">
+                        Title: {{song.song_title}} – Album: {{song.album}} – Artist: {{song.album.artist}}
+                    </a>
+                    <form action="{% url 'music:delete-song' song.id %}", method="post", style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="song_id" value="{{ song.id }}" />
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}

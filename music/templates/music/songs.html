@@ -8,7 +8,7 @@
         <ul>
             {% for song in song_list %}
                 <li>
-                    Title: {{song.song_title}} – Album: {{song.album}}
+                    Title: {{song.song_title}} – Album: {{song.album}} – Artist: {{song.album.artist}}
                     <form action="{% url 'music:delete-song' song.id %}", method="post", style="display: inline;">
                         {% csrf_token %}
                         <input type="hidden" name="song_id" value="{{ song.id }}" />

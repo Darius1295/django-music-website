@@ -57,7 +57,7 @@
       <div class="input-group">
         <input type="text" class="form-control border border-right-0" name="q" value="{{ request.GET.q }}" placeholder="Search...">
         <span class="input-group-append">
-        <button class="btn btn-outline-secondary border border-left-0" type="button">
+        <button class="btn btn-outline-secondary border border-left-0" type="submit">
           <i class="fa fa-search"></i>
         </button>
         </span>
@@ -67,7 +67,7 @@
     <ul class="navbar-nav ml-auto">
       <!--Username-->
       <li class="nav-item">
-        <a class="navbar-text">Signed in as: {{user.username}}</a> &nbsp;
+        <a class="navbar-text" style="color:white">Signed in as: {{user.username}}</a> &nbsp;
       </li>
       <!--Add Album Button-->
       <li class="nav-item">

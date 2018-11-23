@@ -12,19 +12,20 @@ def index(request):
         return render(request, 'music/login.html')
     else:
         albums = Album.objects.filter(user=request.user)
-        song_results = Song.objects.all()
+        users_songs = Song.objects.all()
         query = request.GET.get("q")
         if query:
             albums = albums.filter(
-                Q(album_title__icontains=query) |
+                Q(album_name__icontains=query) |
                 Q(artist__icontains=query)
             ).distinct()
-            song_results = song_results.filter(
-                Q(song_title__icontains=query)
+            users_songs = users_songs.filter(
+                Q(song_title__icontains=query) |
+                Q(album__artist__icontains=query)
             ).distinct()
-            return render(request, 'music/index.html', {
+            return render(request, 'music/results.html', {
                 'albums': albums,
-                'songs': song_results,
+                'song_list': users_songs,
             })
         else:
             return render(request, 'music/index.html', {'albums': albums})
